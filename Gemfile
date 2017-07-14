@@ -13,6 +13,10 @@ gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 gem "graphql"
+gem "jquery-rails"
+
+# quickfix for dlopen issue https://github.com/rails/rails/issues/26658
+gem "rb-readline"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
