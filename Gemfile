@@ -12,6 +12,7 @@ gem 'rails', '~> 5.0.4'
 gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+gem "graphql"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -27,3 +28,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'graphiql-rails', group: :development
