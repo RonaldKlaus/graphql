@@ -1,15 +1,9 @@
+require 'graphql/query_resolver'
+
 Types::QueryType = GraphQL::ObjectType.define do
   name "Query"
   # Add root-level fields here.
   # They will be entry points for queries on your schema.
-
-  # TODO: remove me
-  field :testField, types.String do
-    description "An example field added by the generator"
-    resolve ->(root, args, context) {
-      "Hello World!"
-    }
-  end
 
   field :movie, Types::MovieType do
     description "a movie"
@@ -17,14 +11,25 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :title, types.String
 
     resolve ->(root, args, context) {
-      Movie.find_by(title: args[:title])
+      GraphQL::QueryResolver.run(Movie, context, Types::MovieType) do
+        Movie.find_by(title: args[:title])
+      end
     }
   end
 
   field :movies, types[Types::MovieType] do
     description "a list of movies"
     resolve ->(root, args, context) {
-      Movie.limit(10)
+      Movie.all
+    }
+  end
+
+  field :movies_with_loader, types[Types::MovieType] do
+    description "a list of movies"
+    resolve ->(root, args, context) {
+      GraphQL::QueryResolver.run(Movie, context, Types::MovieType) do
+        Movie.all
+      end
     }
   end
 
@@ -40,7 +45,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   field :users, types[Types::UserType] do
     description "a list of users"
     resolve ->(root, args, context) {
-      User.limit(10)
+      User.all
     }
   end
 end

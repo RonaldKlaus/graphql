@@ -11,10 +11,13 @@ gem 'rails', '~> 5.0.4'
 # Use sqlite3 as the database for Active Record
 # gem 'mysql2'
 gem "sqlite3"
+gem "jquery-rails"
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+
+# here comes the magic
 gem "graphql"
-gem "jquery-rails"
+gem 'graphql-query-resolver'
 
 # quickfix for dlopen issue https://github.com/rails/rails/issues/26658
 gem "rb-readline"
