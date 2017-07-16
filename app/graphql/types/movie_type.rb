@@ -5,7 +5,7 @@ Types::MovieType = GraphQL::ObjectType.define do
   field :id, !types.Int
   field :title, !types.String
 
-  field :ratings, types[Types::RatingType]
   # that is realy cool
+  field :ratings, types[Types::RatingType]
   field :user, Types::UserType
 end

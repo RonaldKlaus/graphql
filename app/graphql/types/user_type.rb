@@ -4,6 +4,7 @@ Types::UserType = GraphQL::ObjectType.define do
 
   field :id, !types.Int
   field :username, !types.String
+  field :ratings, types[Types::RatingType]
   field :name, !types.String do
     resolve ->(user, args, ctx) {
       [

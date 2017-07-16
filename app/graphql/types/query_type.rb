@@ -13,9 +13,11 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :movie, Types::MovieType do
     description "a movie"
+    # search for specific movie
+    argument :title, types.String
+
     resolve ->(root, args, context) {
-      Rails.logger.debug "---- #{args}, #{context}"
-      Movie.find_by(permalink: args[:permalink])
+      Movie.find_by(title: args[:title])
     }
   end
 
@@ -28,6 +30,8 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :user, Types::UserType do
     description "a user"
+    #search for a specific user
+    argument :username, types.String
     resolve ->(root, args, context) {
       User.first
     }
